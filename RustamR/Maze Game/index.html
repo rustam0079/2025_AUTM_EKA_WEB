@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Maze Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #gameContainer {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #ui {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        #ui h2 {
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        #ui p {
+            margin: 5px 0;
+        }
+
+        #winMessage {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: #4CAF50;
+            padding: 30px 50px;
+            border-radius: 15px;
+            font-size: 24px;
+            text-align: center;
+            z-index: 200;
+            display: none;
+            border: 3px solid #4CAF50;
+        }
+
+        #winMessage.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        #winCoins {
+            margin: 10px 0 15px;
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        #restartButton {
+            margin-top: 10px;
+            padding: 12px 26px;
+            font-size: 18px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        #restartButton:hover {
+            background: #45a049;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .controls {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #333;
+        }
+
+        .controls span {
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer"></div>
+    <div id="ui">
+        <h2>🎮 3D Maze Game</h2>
+        <p>Find the exit to win!</p>
+        <p id="coinCount" style="color: #FFD700; font-weight: bold; margin-top: 10px;">Coins: 0/0</p>
+        <div class="controls">
+            <p><span>WASD</span> - Move</p>
+            <p><span>Mouse</span> - Look around</p>
+            <p><span>Space</span> - Jump</p>
+        </div>
+    </div>
+    <div id="winMessage">
+        <h1>🎉 You Win! 🎉</h1>
+        <p id="winText">You found the exit!</p>
+        <p id="winCoins">Coins: 0/0</p>
+        <button id="restartButton">Play Again</button>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="game.js"></script>
+</body>
+</html>
